@@ -66,16 +66,16 @@ class Attractor(object):
         self.x[0] = xyzarray[0]
         self.y[0] = xyzarray[1]
         self.z[0] = xyzarray[2]
-            """2nd order RK for x"""
+
         for i in xrange(self.points):
             k1_x = self.fxn1(self.y[i],self.x[i],self.s,self.dt)
             k2_x = self.fxn1(self.y[i],k1_x*(.5*self.dt)+self.x[i],self.s,self.dt)
             self.x[i+1] = self.x[i] + (.5*(k1_x + k2_x))
-            """2nd order RK for y"""
+
             k1_y = self.fxn2(self.y[i],self.x[i],self.z[i],self.p,self.dt)
             k2_y = self.fxn2(self.y[i]+k1_y*(.5*self.dt),self.x[i],self.z[i],self.p,self.dt)
             self.y[i+1] = self.y[i] + (.5*(k1_y + k2_y))
-            """2nd order RK for z"""
+
             k1_z = self.fxn3(self.y[i],self.x[i],self.z[i],self.b,self.dt)
             k2_z = self.fxn3(self.y[i],self.x[i],self.z[i]+k1_z*(.5*self.dt),self.b,self.dt)
             self.z[i+1] = self.z[i] + (.5*(k1_z + k2_z))
@@ -97,25 +97,25 @@ class Attractor(object):
         self.x[0] = xyzarray[0]
         self.y[0] = xyzarray[1]
         self.z[0] = xyzarray[2]
-            """4th order RK for x"""
+
         for i in xrange(self.points):
             k1_x = self.fxn1(self.y[i],self.x[i],self.s,self.dt)
             k2_x = self.fxn1(self.y[i],k1_x*(.5*self.dt)+self.x[i],self.s,self.dt)
             k3_x = self.fxn1(self.y[i],k2_x*(.5*self.dt)+self.x[i],self.s,self.dt)
             k4_x = self.fxn1(self.y[i],k3_x*self.dt+self.x[i],self.s,self.dt)
-            self.x[i+1] = self.x[i] + (self.dt/6)*(k1_x + 2*k2_x + 2*k3_x + k4_x)
-            """4th order RK for y"""
+            self.x[i+1] = self.x[i] + (1.0/6.0)*(k1_x + 2*k2_x + 2*k3_x + k4_x)
+
             k1_y = self.fxn2(self.y[i],self.x[i],self.z[i],self.p,self.dt)
             k2_y = self.fxn2(self.y[i]+k1_y*(.5*self.dt),self.x[i],self.z[i],self.p,self.dt)
             k3_y = self.fxn2(self.y[i]+k2_y*(.5*self.dt),self.x[i],self.z[i],self.p,self.dt)
             k4_y = self.fxn2(self.y[i]+k3_y*self.dt,self.x[i],self.z[i],self.p,self.dt)
-            self.y[i+1] = self.y[i] + (self.dt/6)*(k1_y + 2*k2_y + 2*k3_y + k4_y)
-            """4th order RK for z"""
+            self.y[i+1] = self.y[i] + (1.0/6.0)*(k1_y + 2*k2_y + 2*k3_y + k4_y)
+
             k1_z = self.fxn3(self.y[i],self.x[i],self.z[i],self.b,self.dt)
             k2_z = self.fxn3(self.y[i],self.x[i],self.z[i]+k1_z*(.5*self.dt),self.b,self.dt)
             k3_z = self.fxn3(self.y[i],self.x[i],self.z[i]+k2_z*(.5*self.dt),self.b,self.dt)
             k4_z = self.fxn3(self.y[i],self.x[i],self.z[i]+k3_z*self.dt,self.b,self.dt)
-            self.z[i+1] = self.z[i] + (self.dt/6)*(k1_z + 2*k2_z + 2*k3_z + k4_z)
+            self.z[i+1] = self.z[i] + (1.0/6.0)*(k1_z + 2*k2_z + 2*k3_z + k4_z)
         
             self.t[i+1] = self.t[i] + self.dt
         
