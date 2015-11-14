@@ -141,31 +141,37 @@ class Attractor(object):
     def save(self):
         """Define save to csv"""
         self.solution.to_csv('data.csv')
-              
+
     def plotx(self):
         """Define plot x"""
-        self.solution.plot(x='time',y='x',style='g-', title = 'x(t) vs Time Solution')
-    
+        self.solution.plot(x='time',y='x', title = 'x(t) vs Time Solution')
+        plt.show()
+
     def ploty(self):
         """Define plot y"""
-        self.solution.plot(x='time',y='y',style='b-', title = 'y(t) vs Time Solution')
-    
+        self.solution.plot(x='time',y='y', title = 'y(t) vs Time Solution')
+        plt.show()
+
     def plotz(self):
         """Define plot z"""
-        self.solution.plot(x='time',y='z',style='r-', title = 'z(t) vs Time Solution')
-    
+        self.solution.plot(x='time',y='z', title = 'z(t) vs Time Solution')
+        plt.show()
+
     def plotxy(self):
         """Define plot xy"""
-        self.solution.plot(x='x',y='y',style='y-', title = 'x(t) vs Time Solution')
-    
+        plt.plot(self.solution['x'],self.solution['y'])
+        plt.show()
+
     def plotyz(self):
         """Define plot yz"""
-        self.solution.plot(x='y',y='z',style='m-', title = 'y(t) vs Time Solution')
-    
+        plt.plot(self.solution['y'],self.solution['z'])
+        plt.show()
+
     def plotzx(self):
         """Define plot zx"""
-        self.solution.plot(x='z',y='x',style='c-', title = 'z(t) vs Time Solution')
-    
+        plt.plot(self.solution['z'],self.solution['x'])
+        plt.show()
+
     def plot3d(self):
         """Define 3d plot"""
         fig = plt.figure()
@@ -174,7 +180,7 @@ class Attractor(object):
         ax.set_xlabel('x(t)')
         ax.set_ylabel('y(t)')
         ax.set_zlabel('z(t)')
-        plt.show()         
+        plt.show()
         
     def plot3dwf(self):
         """Define 3d wireframe plot"""
